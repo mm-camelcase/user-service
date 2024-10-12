@@ -4,21 +4,8 @@ FROM azul/zulu-openjdk:17-latest
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the build.gradle and settings.gradle files
-COPY build.gradle settings.gradle /app/
-
-# Copy the gradle wrapper files
-COPY gradlew /app/
-COPY gradle /app/gradle
-
-# Copy the source code
-COPY src /app/src
-
-# Set permissions to execute the Gradle wrapper
-RUN chmod +x ./gradlew
-
-# Build the application
-RUN ./gradlew build
+# Copy the JAR file built by GitHub Actions into the Docker image
+COPY build/libs/user-*-SNAPSHOT.jar /app/user.jar
 
 # Expose the port that the application will run on
 EXPOSE 8080
