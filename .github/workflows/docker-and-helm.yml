@@ -95,8 +95,8 @@ jobs:
       # Create a Helm chart
       - name: Create Helm chart
         run: |
-          helm create my-application
-          cd my-application
+          helm create user-service
+          cd user-service
           sed -i 's|repository: .*|repository: ghcr.io/${{ github.repository }}|' values.yaml
           sed -i 's|tag: .*|tag: latest|' values.yaml
 
@@ -105,9 +105,16 @@ jobs:
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git checkout gh-pages || git checkout --orphan gh-pages
-          mv my-application /helm-charts/
-          git add /helm-charts/
+          
+          # Ensure gh-pages branch exists
+          git fetch origin gh-pages || git checkout --orphan gh-pages
+          git checkout gh-pages
+          
+          # Use relative path for the Helm chart directory
+          mkdir -p helm-charts
+          mv user-service helm-charts/
+          
+          git add helm-charts/
           git commit -m "Update Helm chart for ${{ github.sha }}"
           git push origin gh-pages
 
