@@ -39,21 +39,40 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      # Build the Docker image
+      # Save the build artifact (JAR)
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: user-jar
+          path: build/libs/user-*.jar
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: build  # Ensures this job runs after 'build' completes
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      # Download the built artifact (JAR) from the 'build' job
+      - name: Download JAR artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: user-jar
+          path: ./build/libs/
+
+      # Build the Docker image using the downloaded JAR
       - name: Build Docker image
         run: |
           docker build . -t ghcr.io/${{ github.repository }}:latest
 
       # Log in to GitHub Container Registry
-      #- name: Log in to GitHub Container Registry
-       # run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GH_PAT }}  # Store the PAT in GitHub Secrets
+          password: ${{ secrets.GH_PAT }}
 
       # Push the Docker image to GitHub Container Registry
       - name: Push Docker image
@@ -62,7 +81,7 @@ jobs:
 
   helm:
     runs-on: ubuntu-latest
-    needs: build
+    needs: docker  # Ensures this job runs after 'docker' completes
 
     steps:
       - name: Checkout source code
