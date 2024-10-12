@@ -14,18 +14,18 @@ jobs:
 
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Set up JDK 17 (you can change this to the version you're using)
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'zulu'
 
       # Cache Gradle dependencies for faster builds
       - name: Cache Gradle dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
@@ -124,4 +124,4 @@ jobs:
           helm repo index /helm-charts/
           git add /helm-charts/index.yaml
           git commit -m "Update Helm repo index"
-          git push origin gh-pages
+          git push https://$GITHUB_ACTOR:${{ secrets.GH_PAT }}@github.com/${{ github.repository }} gh-pages
