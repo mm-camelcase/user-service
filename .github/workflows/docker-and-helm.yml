@@ -173,7 +173,7 @@ jobs:
             # Generate or update the Helm repo index
             #helm repo index helm-charts/ --url https://${{ github.repository_owner }}.github.io/site/helm-charts/
             # Generate or update the Helm repo index and place the index.yaml one level up
-            helm repo index helm-charts/ --url https://${{ github.repository_owner }}.github.io/site/helm-charts/ --output-dir .
+            helm repo index helm-charts/ --url https://${{ github.repository_owner }}.github.io/site/
 
 
             # Add, commit, and push the changes to the 'site' repository
