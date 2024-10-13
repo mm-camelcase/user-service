@@ -121,8 +121,8 @@ jobs:
       # Deploy Helm chart to GitHub Pages
       - name: Deploy Helm chart
         run: |
-          helm repo index /helm-charts/
-          git add /helm-charts/index.yaml
+          helm repo index helm-charts/
+          git add helm-charts/index.yaml
           git commit -m "Update Helm repo index"
           git push origin gh-pages
           
