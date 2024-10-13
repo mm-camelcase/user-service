@@ -170,6 +170,9 @@ jobs:
             # Copy the Helm chart from the current repo into the 'site' repo's helm-charts/user-service directory
             cp -r ../helm/* helm-charts/user-service/
 
+            # Generate or update the Helm repo index
+            helm repo index helm-charts/ --url https://${{ github.repository_owner }}.github.io/site/helm-charts/
+
             # Add, commit, and push the changes to the 'site' repository
             git add .
             git commit -m "Update Helm chart for user-service from ${{ github.sha }}"
