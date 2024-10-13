@@ -129,24 +129,49 @@ jobs:
           
 
     # Deploy Helm chart to site repository
-      - name: Deploy Helm chart
+    #   - name: Deploy Helm chart
+    #     run: |
+    #         # Set up git user information
+    #         git config --global user.name "${{ github.actor }}"
+    #         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+    #         # Create Helm repo index in the 'helm-charts/' directory
+    #         mkdir -p helm-charts
+    #         helm repo index helm-charts/
+            
+    #         # Clone the 'site' repository (target repo where Helm chart will be stored)
+    #         git clone https://$GITHUB_ACTOR:${{ secrets.GH_PAT }}@github.com/${{ github.repository_owner }}/site.git
+    #         cd site
+
+    #         # Move the Helm charts to the 'site' repo
+    #         cp -r ../helm-charts/* .
+            
+    #         # Add, commit, and push the changes to the site repository
+    #         git add .
+    #         git commit -m "Update Helm repo index for ${{ github.sha }}"
+    #         git push origin main
+
+    # Deploy Helm chart to 'site' repository in helm-charts/user-service
+      - name: Deploy Helm chart to 'site' repository
         run: |
             # Set up git user information
             git config --global user.name "${{ github.actor }}"
             git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-            # Create Helm repo index in the 'helm-charts/' directory
-            mkdir -p helm-charts
-            helm repo index helm-charts/
             
-            # Clone the 'site' repository (target repo where Helm chart will be stored)
+
+            # Clone the 'site' repository (where Helm chart will be stored)
             git clone https://$GITHUB_ACTOR:${{ secrets.GH_PAT }}@github.com/${{ github.repository_owner }}/site.git
             cd site
 
-            # Move the Helm charts to the 'site' repo
-            cp -r ../helm-charts/* .
-            
-            # Add, commit, and push the changes to the site repository
+            # Create the helm-charts/user-service directory if it doesn't exist
+            mkdir -p helm-charts/user-service
+
+            # Copy the Helm chart from the current repo into the 'site' repo's helm-charts/user-service directory
+            cp -r ../helm/* helm-charts/user-service/
+
+            # Add, commit, and push the changes to the 'site' repository
             git add .
-            git commit -m "Update Helm repo index for ${{ github.sha }}"
+            git commit -m "Update Helm chart for user-service from ${{ github.sha }}"
             git push origin main
+
