@@ -56,7 +56,7 @@ jobs:
 
       # Download the built artifact (JAR) from the 'build' job
       - name: Download JAR artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: user-jar
           path: ./build/libs/
@@ -102,8 +102,6 @@ jobs:
 
       # Commit the Helm chart and push to GitHub Pages
       - name: Commit Helm chart
-        env:
-            TOKEN: ${{ secrets.GH_PAT }}  # Use the secret with your PAT
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
@@ -118,7 +116,7 @@ jobs:
           
           git add helm-charts/
           git commit -m "Update Helm chart for ${{ github.sha }}"
-          git push https://$GITHUB_ACTOR:$TOKEN@github.com/${{ github.repository }} gh-pages
+          git push https://$GITHUB_ACTOR:${{ secrets.GH_PAT }}@github.com/${{ github.repository }} gh-pages
 
       # Deploy Helm chart to GitHub Pages
       - name: Deploy Helm chart
