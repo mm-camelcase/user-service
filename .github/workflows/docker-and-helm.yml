@@ -171,9 +171,8 @@ jobs:
             cp -r ../helm/* helm-charts/user-service/
 
             # Generate or update the Helm repo index
-            #helm repo index helm-charts/ --url https://${{ github.repository_owner }}.github.io/site/helm-charts/
-            # Generate or update the Helm repo index and place the index.yaml one level up
-            helm repo index helm-charts/ --url https://${{ github.repository_owner }}.github.io/site/
+            helm repo index helm-charts/ --url https://${{ github.repository_owner }}.github.io/site/helm-charts/
+            mv helm-charts/index.yaml .
 
 
             # Add, commit, and push the changes to the 'site' repository
