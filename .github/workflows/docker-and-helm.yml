@@ -52,7 +52,7 @@ jobs:
 
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Download the built artifact (JAR) from the 'build' job
       - name: Download JAR artifact
@@ -85,7 +85,7 @@ jobs:
 
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Install Helm
       - name: Install Helm
