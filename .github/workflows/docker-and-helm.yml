@@ -112,7 +112,7 @@ jobs:
           
           # Use relative path for the Helm chart directory
           mkdir -p helm-charts
-          mv user-service helm-charts/
+          mv -f user-service helm-charts/
           
           git add helm-charts/
           git commit -m "Update Helm chart for ${{ github.sha }}"
