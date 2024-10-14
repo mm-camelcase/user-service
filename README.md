@@ -54,6 +54,8 @@ This will force Gradle to re-download the dependencies and rebuild the project.
 
 A github action pipeline publishes to docker and helm repos
 
+![pipeline](.artifacts/build_deploy.png)
+
 
 
 
