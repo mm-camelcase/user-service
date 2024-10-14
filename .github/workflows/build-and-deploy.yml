@@ -79,6 +79,11 @@ jobs:
         run: |
           docker push ghcr.io/${{ github.repository }}:latest
 
+      # Add annotation for Docker image version
+      - name: Annotate Docker image version
+        run: |
+          echo "::notice::Docker image pushed: ghcr.io/${{ github.repository }}:latest"
+
   helm:
     runs-on: ubuntu-latest
     needs: docker  # Ensures this job runs after 'docker' completes
@@ -129,3 +134,7 @@ jobs:
       - name: Push Helm chart to GitHub Packages
         run: |
           helm push user-service-*.tgz oci://ghcr.io/${{ github.repository_owner }}/helm-charts
+
+      - name: Annotate Helm chart version
+        run: |
+          echo "::notice::Helm chart version pushed: $HELM_VERSION"

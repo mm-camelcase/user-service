@@ -52,6 +52,7 @@ This will force Gradle to re-download the dependencies and rebuild the project.
 
 ## CICD
 
+A github action pipeline publishes to docker and helm repos
 
 
 
