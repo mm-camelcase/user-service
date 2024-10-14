@@ -87,15 +87,28 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-    #  Install Helm
+      - name: Get Gradle version
+        id: get_version
+        run: |
+          GRADLE_VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')
+          echo "Gradle version: $GRADLE_VERSION"
+
+          # Check if version contains SNAPSHOT, convert it to -alpha for Helm
+          if [[ "$GRADLE_VERSION" == *"SNAPSHOT"* ]]; then
+            HELM_VERSION="${GRADLE_VERSION/SNAPSHOT/alpha}"
+          else
+            HELM_VERSION="$GRADLE_VERSION"
+          fi
+
+          echo "Helm version: $HELM_VERSION"
+          echo "HELM_VERSION=$HELM_VERSION" >> $GITHUB_ENV
+
+
       - name: Install Helm
         run: |
           curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
       
-      - name: Set up Helm
-        run: |
-          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-  
+
       - name: Package Helm chart
         run: |
           helm package helm
