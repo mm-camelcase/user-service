@@ -22,6 +22,11 @@ This project contains a basic CRUD API with an H2 in-memory database. It can be 
   </div>
 </div>
 
+| ![Index Image](.artifacts/index.png) | ![Swagger Image](.artifacts/swagger.png) |
+|--------------------------------------|------------------------------------------|
+| Index Image                          | Swagger Image                            |
+
+
 ## Common Gradle Commands
 
 Here are some commonly used Gradle commands for managing your Spring Boot project:
