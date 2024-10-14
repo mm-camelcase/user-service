@@ -1,6 +1,6 @@
 # Demo App
 
-This project is a simple Spring Boot application with a REST API connected to an H2 in-memory database. It can be used for testing CICD pipelines & deployments.
+This project is a simple Spring Boot application that can be used for testing CICD pipelines & deployments.
 
 ## Requirements
 
@@ -51,7 +51,7 @@ repo (if using private repositories)
 2. **Authenticate to GitHub Container Registry**: Use the following command to log in to the GitHub Container Registry with your PAT:
 
 ```bash
-helm registry login ghcr.io --username <your-username> --password <your-PAT>
+helm registry login ghcr.io --username mm-camelcase --password <your-PAT>
 ```
 
 3. **Access the Helm Chart**: To view or install the Helm chart from GitHub Packages, use the following command:
