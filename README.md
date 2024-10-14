@@ -11,20 +11,10 @@ This project is a simple Spring Boot application that can be used for testing CI
 
 This project contains a basic CRUD API with an H2 in-memory database. It can be run locally using the Gradle wrapper (`./gradlew`) provided in the project.
 
-<div style="display: flex; justify-content: space-between;">
-  <div style="width: 48%;">
-    <h6>Index</h6>
-    <img src=".artifacts/index.png" alt="Index Image" style="width:100%;">
-  </div>
-  <div style="width: 48%;">
-    <h6>Swagger</h6>
-    <img src=".artifacts/swagger.png" alt="Index Image" style="width:100%;">
-  </div>
-</div>
 
 | ![Index Image](.artifacts/index.png) | ![Swagger Image](.artifacts/swagger.png) |
 |--------------------------------------|------------------------------------------|
-| Index Image                          | Swagger Image                            |
+| **Index Page**                          | **API Page**                            |
 
 
 ## Common Gradle Commands
