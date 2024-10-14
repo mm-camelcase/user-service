@@ -21,33 +21,7 @@ Here are some commonly used Gradle commands for managing your Spring Boot projec
 ``./gradlew clean`` - Cleans the project by removing the build directory.  
 ``./gradlew bootJar`` - Packages the application as an executable JAR.  
 ``./gradlew dependencies`` - Displays the dependency tree for your project.  
-
-
-
-## Accessing the H2 Database Console
-
-The H2 in-memory database can be accessed via the H2 console. Once the application is running, go to:
-
-```bash
-http://localhost:8080/h2-console
-```
-
-Use the following credentials:
-
-**JDBC URL**: `jdbc:h2:mem:testdb`  
-**Username**: `sa`  
-**Password**: `password` 
-
-
-
-## Troubleshooting
-If you encounter issues with the build or dependencies, you can run the following command to refresh the Gradle dependencies:
-
-```bash
-./gradlew clean build --refresh-dependencies
-```
-
-This will force Gradle to re-download the dependencies and rebuild the project.
+``./gradlew clean build --refresh-dependencies`` - Refresh the Gradle dependencies (usefull for build or dependency issues).  
 
 
 ## CI/CD Pipeline
@@ -60,6 +34,33 @@ This project uses a GitHub Actions pipeline to automate building, packaging, and
 
 ![pipeline](.artifacts/build_deploy.png)
 
+
+## Helm Integration 
+
+To configure Helm to use GitHub Packages for managing Helm charts:
+
+1. **Create a Personal Access Token (PAT)** with the following permissions:
+
+```bash
+read:packages
+write:packages
+delete:packages
+repo (if using private repositories)
+```
+
+2. **Authenticate to GitHub Container Registry**: Use the following command to log in to the GitHub Container Registry with your PAT:
+
+```bash
+helm registry login ghcr.io --username <your-username> --password <your-PAT>
+```
+
+3. **Access the Helm Chart**: To view or install the Helm chart from GitHub Packages, use the following command:
+
+```bash
+helm show chart oci://ghcr.io/mm-camelcase/helm-charts/user-service --devel
+```
+
+This allows you to interact with Helm charts stored in GitHub Packages using Helm commands.
 
 
 
