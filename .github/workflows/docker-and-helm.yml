@@ -196,4 +196,4 @@ jobs:
   
       - name: Push Helm chart to GitHub Packages
         run: |
-          helm push user-service-0.1.0.tgz oci://ghcr.io/${{ github.repository_owner }}/${{ github.repository }}
+          helm push user-service-0.1.0.tgz oci://ghcr.io/${{ github.repository_owner }}/helm-charts
