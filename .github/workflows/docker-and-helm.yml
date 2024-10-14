@@ -152,31 +152,48 @@ jobs:
     #         git push origin main
 
     # Deploy Helm chart to 'site' repository in helm-charts/user-service
-      - name: Deploy Helm chart to 'site' repository
-        run: |
-            # Set up git user information
-            git config --global user.name "${{ github.actor }}"
-            git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+      # - name: Deploy Helm chart to 'site' repository
+      #   run: |
+      #       # Set up git user information
+      #       git config --global user.name "${{ github.actor }}"
+      #       git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
             
 
-            # Clone the 'site' repository (where Helm chart will be stored)
-            git clone https://$GITHUB_ACTOR:${{ secrets.GH_PAT }}@github.com/${{ github.repository_owner }}/site.git
-            cd site
+      #       # Clone the 'site' repository (where Helm chart will be stored)
+      #       git clone https://$GITHUB_ACTOR:${{ secrets.GH_PAT }}@github.com/${{ github.repository_owner }}/site.git
+      #       cd site
 
-            # Create the helm-charts/user-service directory if it doesn't exist
-            mkdir -p helm-charts/user-service
+      #       # Create the helm-charts/user-service directory if it doesn't exist
+      #       mkdir -p helm-charts/user-service
 
-            # Copy the Helm chart from the current repo into the 'site' repo's helm-charts/user-service directory
-            cp -r ../helm/* helm-charts/user-service/
+      #       # Copy the Helm chart from the current repo into the 'site' repo's helm-charts/user-service directory
+      #       cp -r ../helm/* helm-charts/user-service/
 
-            # Generate or update the Helm repo index
-            helm repo index helm-charts/ --url https://${{ github.repository_owner }}.github.io/site/helm-charts/
-            mv helm-charts/index.yaml .
+      #       # Generate or update the Helm repo index
+      #       helm repo index helm-charts/ --url https://${{ github.repository_owner }}.github.io/site/helm-charts/
+      #       mv helm-charts/index.yaml .
 
 
-            # Add, commit, and push the changes to the 'site' repository
-            git add .
-            git commit -m "Update Helm chart for user-service from ${{ github.sha }}"
-            git push origin main
+      #       # Add, commit, and push the changes to the 'site' repository
+      #       git add .
+      #       git commit -m "Update Helm chart for user-service from ${{ github.sha }}"
+      #       git push origin main
 
+      #       - name: Checkout repository
+      #       uses: actions/checkout@v3
+      
+      - name: Set up Helm
+        run: |
+          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+  
+      - name: Package Helm chart
+        run: |
+          helm package helm
+  
+      - name: Authenticate to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ghcr.io --username ${{ github.actor }} --password-stdin
+  
+      - name: Push Helm chart to GitHub Packages
+        run: |
+          helm push my-chart-0.1.0.tgz oci://ghcr.io/${{ github.repository_owner }}/${{ github.repository }}
