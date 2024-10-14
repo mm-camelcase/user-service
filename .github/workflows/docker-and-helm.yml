@@ -94,7 +94,6 @@ jobs:
           java-version: '17'
           distribution: 'zulu'
 
-
       - name: Get Gradle version
         id: get_version
         run: |
@@ -111,16 +110,14 @@ jobs:
           echo "Helm version: $HELM_VERSION"
           echo "HELM_VERSION=$HELM_VERSION" >> $GITHUB_ENV
 
-      # Step 4: Update the Helm chart version in Chart.yaml
       - name: Update Helm Chart version
         run: |
-          sed -i "s/^version:.*/version: $HELM_VERSION/" helm-charts/my-chart/Chart.yaml
-          cat helm-charts/my-chart/Chart.yaml  # Debug: Check the updated Chart.yaml
+          sed -i "s/^version:.*/version: $HELM_VERSION/" helm/Chart.yaml
+          cat helm/Chart.yaml  
 
       - name: Install Helm
         run: |
           curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-      
 
       - name: Package Helm chart
         run: |
