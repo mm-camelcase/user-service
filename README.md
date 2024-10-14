@@ -15,7 +15,7 @@ This project contains a basic CRUD API with an H2 in-memory database. It can be 
 
 Here are some commonly used Gradle commands for managing your Spring Boot project:
 
-``./gradlew bootRun`` - Runs the Spring Boot application. App available at http://localhost:8080
+``./gradlew bootRun`` - Runs the Spring Boot application. App available at http://localhost:8080   
 ``./gradlew build`` - Builds the project and packages it into a JAR.  
 ``./gradlew test`` - Runs the unit tests.  
 ``./gradlew clean`` - Cleans the project by removing the build directory.  
@@ -50,9 +50,13 @@ If you encounter issues with the build or dependencies, you can run the followin
 This will force Gradle to re-download the dependencies and rebuild the project.
 
 
-## CICD
+## CI/CD Pipeline
 
-A github action pipeline publishes to docker and helm repos
+This project uses a GitHub Actions pipeline to automate building, packaging, and deployment:
+
+1. **Build**: The project is built using Gradle to generate the JAR file.
+2. **Docker**: A Docker image is built from the JAR and pushed to the GitHub Container Registry (GHCR).
+3. **Helm**: A Helm chart is versioned, packaged, and published to GitHub Packages.
 
 ![pipeline](.artifacts/build_deploy.png)
 
