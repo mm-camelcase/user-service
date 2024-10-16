@@ -11,4 +11,4 @@ COPY build/libs/user-*-SNAPSHOT.jar /app/user.jar
 EXPOSE 8080
 
 # Run the main jar file (avoiding the plain jar)
-CMD ["sh", "-c", "java -jar /app/build/libs/user-*-SNAPSHOT.jar"]
+CMD ["sh", "-c", "java -jar /app/user.jar"]
