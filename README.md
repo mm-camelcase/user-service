@@ -66,7 +66,7 @@ helm registry login ghcr.io --username mm-camelcase --password <your-PAT>
 helm show chart oci://ghcr.io/mm-camelcase/helm-charts/user-service --devel
 ```
 
-This allows you to interact with Helm charts stored in GitHub Packages using Helm commands.
+This allows you to interact with Helm charts stored in GitHub Packages using Helm commands. 
 
 
 
