@@ -67,17 +67,17 @@ jobs:
           docker build . -t ghcr.io/${{ github.repository }}:latest
 
       # Log in to GitHub Container Registry
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GH_PAT }}
+      # - name: Log in to GitHub Container Registry
+      #   uses: docker/login-action@v3
+      #   with:
+      #     registry: ghcr.io
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.GH_PAT }}
 
-      # Push the Docker image to GitHub Container Registry
-      - name: Push Docker image to GitHub Container Registry
-        run: |
-          docker push ghcr.io/${{ github.repository }}:latest
+      # # Push the Docker image to GitHub Container Registry
+      # - name: Push Docker image to GitHub Container Registry
+      #   run: |
+      #     docker push ghcr.io/${{ github.repository }}:latest
 
       # Log in to Docker Hub
       - name: Log in to Docker Hub
@@ -99,7 +99,7 @@ jobs:
       # Add annotation for Docker image version
       - name: Annotate Docker image version
         run: |
-          echo "::notice::Docker image pushed: ghcr.io/${{ github.repository }}:latest and Docker Hub: ${{ secrets.DOCKER_USERNAME }}/user-service:latest"
+          echo "::notice::Docker image pushed to Docker Hub: ${{ secrets.DOCKER_USERNAME }}/user-service:latest"
 
   helm:
     runs-on: ubuntu-latest
