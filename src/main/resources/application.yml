@@ -8,7 +8,7 @@ spring:
     activate:
       on-profile: devenv
   datasource:
-    url: jdbc:postgresql://localhost:5432/devenvdb
+    url: jdbc:postgresql://db-devenv-postgresql:5432/devenvdb
     driver-class-name: org.postgresql.Driver
     username: devenv
     password: devenv
