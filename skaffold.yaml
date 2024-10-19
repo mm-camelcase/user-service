@@ -1,0 +1,18 @@
+apiVersion: skaffold/v4beta11
+kind: Config
+metadata:
+  name: user-service
+build:
+  artifacts:
+    - image: camelcasemm/user-service
+      docker:
+        dockerfile: Dockerfile
+deploy:
+  helm:
+    releases:
+      - name: user-service
+        chartPath: helm
+        namespace: devenv
+        valuesFiles:
+          - helm/values.yaml
+        version: 0.0.0

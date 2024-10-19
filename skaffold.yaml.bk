@@ -1,0 +1,58 @@
+apiVersion: skaffold/v3
+kind: Config
+metadata:
+  name: user-service
+build:
+  artifacts:
+    - image: user-service
+      context: .
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  helm:
+    releases:
+      - name: user-service
+        chartPath: helm
+        valuesFiles:
+          - helm/values.yaml
+        namespace: devenv
+        setValues:
+          image.repository: user-service
+          image.tag: devenv
+deploy:
+  helm:
+    releases:
+      - name: user-service
+        chartPath: helm
+        namespace: devenv
+        valuesFiles:
+          - helm/values.yaml
+        setValues:
+          image.repository: user-service
+          image.tag: devenv
+        #wait: true
+    hooks:
+      after:
+        #host:
+        command: []
+    #     args: ["-c", "kubectl rollout status deployment/user-service -n devenv --timeout=300s"]
+
+# deploy:
+#   kubectl:
+#     manifests:
+#       - deployment.yaml
+#     hooks:
+#       before:
+#         - host:
+#             command: ["sh", "-c", "echo pre-deploy host hook running on $(hostname)!"]
+#             os: [darwin, linux]
+#       after:
+#         - host:
+#             command: ["sh", "-c", "echo post-deploy host hook running on $(hostname)!"]
+
+# portForward:
+#   - resourceType: service
+#     resourceName: user-service
+#     namespace: devenv
+#     port: 8080
+#     localPort: 8080

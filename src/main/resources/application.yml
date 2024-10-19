@@ -1,3 +1,21 @@
 spring:
   application:
     name: user
+
+---
+spring:
+  config:
+    activate:
+      on-profile: devenv
+  datasource:
+    url: jdbc:postgresql://localhost:5432/devenvdb
+    driver-class-name: org.postgresql.Driver
+    username: devenv
+    password: devenv
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
