@@ -5,6 +5,7 @@ metadata:
 build:
   artifacts:
     - image: camelcasemm/user-service
+      runtimeType: jvm
       docker:
         dockerfile: Dockerfile
 deploy:
@@ -16,3 +17,12 @@ deploy:
         valuesFiles:
           - helm/values.yaml
         version: 0.0.0
+        setValues:
+          spring.profile: "devenv"
+
+portForward:
+  - resourceType: service
+    resourceName: user-service
+    namespace: devenv
+    port: 8080
+    localPort: 8080

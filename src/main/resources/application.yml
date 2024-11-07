@@ -1,6 +1,12 @@
 spring:
   application:
     name: user
+  sql:
+    init:
+      mode: always
+      continue-on-error: true
+  jpa:
+    defer-datasource-initialization: true
 
 ---
 spring:
