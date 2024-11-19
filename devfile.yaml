@@ -50,7 +50,8 @@ commands:
       label: "Package"
       component: tools
       #workingDir: ${PROJECTS_ROOT}/quarkus-api-example
-      commandLine: "./mvnw clean package -DskipTests=true"
+      #commandLine: "./mvnw clean package -DskipTests=true"
+      commandLine: "./gradlew build -x test"
       group:
         kind: build
         isDefault: true
