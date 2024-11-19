@@ -100,7 +100,7 @@ commands:
       label: "Deploy Postrgres"
       component: tools
       #workingDir: ${PROJECTS_ROOT}/quarkus-api-example
-      commandLine: "oc new-app -e POSTGRESQL_USER=user -e POSTGRESQL_PASSWORD=password -e POSTGRESQL_DATABASE=food_db postgresql:10-el7 -n demo"
+      commandLine: "oc new-app -e POSTGRESQL_USER=user -e POSTGRESQL_PASSWORD=password -e POSTGRESQL_DATABASE=food_db postgresql:10-el7 -n markmitchell451-dev"
       group:
         kind: test
 # events:
