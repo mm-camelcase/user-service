@@ -7,20 +7,16 @@ components:
   - name: tools
     container:
       image: quay.io/devfile/universal-developer-image:ubi8-latest
-      #image: ghcr.io/graalvm/jdk-community:17
-      # env:
-      #   - name: QUARKUS_HTTP_HOST
-      #     value: 0.0.0.0
       endpoints:
         - exposure: none
           name: debug
           protocol: tcp
           targetPort: 5005
         - exposure: public
-          name: list-all-food
+          name: homepage
           protocol: https
           targetPort: 8080
-          path: /food
+          path: /
       volumeMounts:
         - name: m2
           path: /home/user/.m2
@@ -50,8 +46,6 @@ commands:
     exec:
       label: "Package"
       component: tools
-      #workingDir: ${PROJECTS_ROOT}/quarkus-api-example
-      #commandLine: "./mvnw clean package -DskipTests=true"
       commandLine: "./gradlew build -x test"
       group:
         kind: build
@@ -60,53 +54,28 @@ commands:
     exec:
       label: "Run Tests"
       component: tools
-      #workingDir: ${PROJECTS_ROOT}/quarkus-api-example
-      #commandLine: "./mvnw test"
       commandLine: "./gradlew test"
       group:
         kind: test
-  - id: packagenative
-    exec:
-      label: "Package Native"
-      component: tools
-      #workingDir: ${PROJECTS_ROOT}/quarkus-api-example
-      #commandLine: "./mvnw package -Dnative -Dmaven.test.skip -Dquarkus.native.native-image-xmx=3G"
-      commandLine: "./gradlew nativeCompile -x test -Pnative-image-xmx=3G"
-      group:
-        kind: build
   - id: startdev
     exec:
       label: "Start Development mode (Hot reload + debug)"
       component: tools
-      #workingDir: ${PROJECTS_ROOT}/quarkus-api-example
-      #commandLine: "./mvnw compile quarkus:dev"
       commandLine: "./gradlew bootRun"
       group:
         kind: run
         isDefault: true
-  - id: startnative
-    exec:
-      label: "Start Native"
-      component: tools
-      #workingDir: ${PROJECTS_ROOT}/quarkus-api-example/target
-      #commandLine: "./quarkus-api-example-1.0.0-SNAPSHOT-runner"
-      commandLine: "./springboot-api-example"
-      group:
-        kind: run
   - id: buildimage
     exec:
       label: "Build Image"
       component: tools
-      #workingDir: ${PROJECT_SOURCE}
-      #commandLine: "podman build -f src/main/docker/Dockerfile.jvm -t quay.io/che-incubator/quarkus-api-example ."
-      commandLine: "podman build  -t quay.io/che-incubator/springboot-api-example ."
+      commandLine: "docker build  -t quay.io/che-incubator/springboot-api-example ."
       group:
         kind: build
   - id: deploypostgres
     exec:
       label: "Deploy Postrgres"
       component: tools
-      #workingDir: ${PROJECTS_ROOT}/quarkus-api-example
       commandLine: "oc new-app -e POSTGRESQL_USER=user -e POSTGRESQL_PASSWORD=password -e POSTGRESQL_DATABASE=food_db postgresql:10-el7 -n markmitchell451-dev"
       group:
         kind: test
