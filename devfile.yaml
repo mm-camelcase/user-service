@@ -8,9 +8,9 @@ components:
     container:
       image: quay.io/devfile/universal-developer-image:ubi8-latest
       #image: ghcr.io/graalvm/jdk-community:17
-      env:
-        - name: QUARKUS_HTTP_HOST
-          value: 0.0.0.0
+      # env:
+      #   - name: QUARKUS_HTTP_HOST
+      #     value: 0.0.0.0
       endpoints:
         - exposure: none
           name: debug
