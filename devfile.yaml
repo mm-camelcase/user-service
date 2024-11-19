@@ -25,12 +25,7 @@ components:
       cpuRequest: 1000m
       cpuLimit: 4000m
       mountSources: true
-      command: ['sh', '-c']
-      # args: [
-      #   'yum install -y sudo && \
-      #    echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
-      #    /bin/bash'
-      # ]
+      command: ['bash', '-c']
       args: [
         'echo hello'
       ]
