@@ -26,11 +26,15 @@ components:
       cpuLimit: 4000m
       mountSources: true
       command: ['sh', '-c']
+      # args: [
+      #   'yum install -y sudo && \
+      #    echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+      #    /bin/bash'
+      # ]
       args: [
-        'yum install -y sudo && \
-         echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
-         /bin/bash'
+        'echo hello'
       ]
+
 
   - name: postgresql
     container:
