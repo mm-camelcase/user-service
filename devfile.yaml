@@ -59,24 +59,27 @@ commands:
     exec:
       label: "Run Tests"
       component: tools
-      workingDir: ${PROJECTS_ROOT}/quarkus-api-example
-      commandLine: "./mvnw test"
+      #workingDir: ${PROJECTS_ROOT}/quarkus-api-example
+      #commandLine: "./mvnw test"
+      commandLine: "./gradlew test"
       group:
         kind: test
   - id: packagenative
     exec:
       label: "Package Native"
       component: tools
-      workingDir: ${PROJECTS_ROOT}/quarkus-api-example
-      commandLine: "./mvnw package -Dnative -Dmaven.test.skip -Dquarkus.native.native-image-xmx=3G"
+      #workingDir: ${PROJECTS_ROOT}/quarkus-api-example
+      #commandLine: "./mvnw package -Dnative -Dmaven.test.skip -Dquarkus.native.native-image-xmx=3G"
+      commandLine: "./gradlew nativeCompile -x test -Pnative-image-xmx=3G"
       group:
         kind: build
   - id: startdev
     exec:
       label: "Start Development mode (Hot reload + debug)"
       component: tools
-      workingDir: ${PROJECTS_ROOT}/quarkus-api-example
-      commandLine: "./mvnw compile quarkus:dev"
+      #workingDir: ${PROJECTS_ROOT}/quarkus-api-example
+      #commandLine: "./mvnw compile quarkus:dev"
+      commandLine: "./gradlew bootRun"
       group:
         kind: run
         isDefault: true
@@ -84,16 +87,18 @@ commands:
     exec:
       label: "Start Native"
       component: tools
-      workingDir: ${PROJECTS_ROOT}/quarkus-api-example/target
-      commandLine: "./quarkus-api-example-1.0.0-SNAPSHOT-runner"
+      #workingDir: ${PROJECTS_ROOT}/quarkus-api-example/target
+      #commandLine: "./quarkus-api-example-1.0.0-SNAPSHOT-runner"
+      commandLine: "./springboot-api-example"
       group:
         kind: run
   - id: buildimage
     exec:
       label: "Build Image"
       component: tools
-      workingDir: ${PROJECT_SOURCE}
-      commandLine: "podman build -f src/main/docker/Dockerfile.jvm -t quay.io/che-incubator/quarkus-api-example ."
+      #workingDir: ${PROJECT_SOURCE}
+      #commandLine: "podman build -f src/main/docker/Dockerfile.jvm -t quay.io/che-incubator/quarkus-api-example ."
+      commandLine: "podman build  -t quay.io/che-incubator/springboot-api-example ."
       group:
         kind: build
   - id: deploypostgres
