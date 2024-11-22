@@ -26,8 +26,8 @@ components:
       cpuRequest: 1000m
       cpuLimit: 4000m
       mountSources: true
-      command: ['ls']
-      args: ['/']
+      #command: ['ls']
+      #args: ['/']
 
 
   - name: postgresql
