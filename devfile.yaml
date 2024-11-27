@@ -18,6 +18,11 @@ components:
           protocol: https
           targetPort: 8080
           path: /
+        - exposure: public
+          name: ssh
+          protocol: tcp
+          targetPort: 2222
+          path: /
       volumeMounts:
         - name: m2
           path: /home/user/.m2
