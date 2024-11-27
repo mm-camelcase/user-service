@@ -22,7 +22,6 @@ components:
           name: ssh
           protocol: tcp
           targetPort: 2222
-          path: /
       volumeMounts:
         - name: m2
           path: /home/user/.m2
