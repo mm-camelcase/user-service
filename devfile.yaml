@@ -33,19 +33,19 @@ components:
       #command: ['ls']
       #args: ['/']
 
-  - name: passthrough-route
-    kubernetes:
-      inlined: |
-        apiVersion: route.openshift.io/v1
-        kind: Route
-        metadata:
-          name: ssh-route
-        spec:
-          to:
-            kind: Service
-            name: tools # Ensure this matches the service created for the container
-          port:
-            targetPort: 2222
+  # - name: passthrough-route
+  #   kubernetes:
+  #     inlined: |
+  #       apiVersion: route.openshift.io/v1
+  #       kind: Route
+  #       metadata:
+  #         name: ssh-route
+  #       spec:
+  #         to:
+  #           kind: Service
+  #           name: tools # Ensure this matches the service created for the container
+  #         port:
+  #           targetPort: 2222
 
   - name: postgresql
     container:
