@@ -29,9 +29,6 @@ components:
       memoryRequest: 512Mi
       cpuRequest: 1000m
       cpuLimit: 4000m
-      # Running as root user
-      securityContext:
-        runAsUser: 0
       mountSources: true
       #command: ['ls']
       #args: ['/']
