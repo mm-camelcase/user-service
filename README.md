@@ -1,6 +1,6 @@
 # Demo App
 
-[![Contribute](https://www.eclipse.org/che/contribute.svg)](https://workspaces.openshift.com#https://github.com/che-incubator/quarkus-api-example)
+[![Contribute](https://www.eclipse.org/che/contribute.svg)](https://workspaces.openshift.com#https://github.com/mm-camelcase/user-service/tree/che)
 
 This project is a simple Spring Boot application that can be used for testing CICD pipelines & deployments.
 
