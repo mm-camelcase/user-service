@@ -1,0 +1,23 @@
+{
+	"name": "Remote Kubernetes Dev Container",
+	"extensions": [
+	  "ms-kubernetes-tools.vscode-kubernetes-tools",
+	  "ms-vscode-remote.remote-containers"
+	],
+	"remoteUser": "root",
+	"kubernetes": {
+	  "namespace": "your-namespace",
+	  "podSelector": {
+		"matchLabels": {
+		  "app": "your-app-label"
+		}
+	  },
+	  "containerName": "your-container-name"
+	},
+	"settings": {
+	  "terminal.integrated.defaultProfile.linux": "bash",
+	  "editor.formatOnSave": true
+	},
+	"postCreateCommand": "echo 'Connected to Kubernetes dev container!'"
+  }
+  

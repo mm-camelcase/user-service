@@ -1,12 +1,11 @@
 schemaVersion: 2.3.0
 metadata:
-  generateName: quarkus-api-example
+  generateName: user-api-example
 attributes:
   controller.devfile.io/storage-type: ephemeral
 components:
-  - name: tools
+  - name: devenv
     container:
-      #image: quay.io/devfile/universal-developer-image:ubi8-latest
       image: 'camelcasemm/che-devenv-image:2.0.0'
       endpoints:
         - exposure: none
@@ -18,10 +17,6 @@ components:
           protocol: https
           targetPort: 8080
           path: /
-        - exposure: public
-          name: ssh
-          protocol: tcp
-          targetPort: 2222
         - name: vscode-remote
           targetPort: 3000
           exposure: public
@@ -33,22 +28,6 @@ components:
       cpuRequest: 1000m
       cpuLimit: 4000m
       mountSources: true
-      #command: ['ls']
-      #args: ['/']
-
-  # - name: passthrough-route
-  #   kubernetes:
-  #     inlined: |
-  #       apiVersion: route.openshift.io/v1
-  #       kind: Route
-  #       metadata:
-  #         name: ssh-route
-  #       spec:
-  #         to:
-  #           kind: Service
-  #           name: tools # Ensure this matches the service created for the container
-  #         port:
-  #           targetPort: 2222
 
   - name: postgresql
     container:
@@ -89,13 +68,6 @@ commands:
       group:
         kind: run
         isDefault: true
-  - id: buildimage
-    exec:
-      label: "Build Image"
-      component: tools
-      commandLine: "docker build  -t quay.io/che-incubator/springboot-api-example ."
-      group:
-        kind: build
   - id: deploypostgres
     exec:
       label: "Deploy Postrgres"
