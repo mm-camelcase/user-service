@@ -41,7 +41,7 @@ This project uses a GitHub Actions pipeline to automate building, packaging, and
 ![pipeline](.artifacts/build_deploy.png)
 
 
-## Helm Integration 
+## Helm Integration   
 
 To configure Helm to use GitHub Packages for managing Helm charts:
 
