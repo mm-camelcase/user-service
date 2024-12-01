@@ -1,0 +1,71 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Package",
+        "type": "shell",
+        "command": "./gradlew build -x test",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": [],
+        "detail": "Generated from devfile command 'package'",
+        "options": {
+          "env": {
+            "COMPONENT": "tools"
+          }
+        }
+      },
+      {
+        "label": "Run Tests",
+        "type": "shell",
+        "command": "./gradlew test",
+        "group": {
+          "kind": "test",
+          "isDefault": false
+        },
+        "problemMatcher": [],
+        "detail": "Generated from devfile command 'runtests'",
+        "options": {
+          "cwd": "${workspaceFolder}/user-service",
+          "env": {
+            "COMPONENT": "tools"
+          }
+        }
+      },
+      {
+        "label": "Start Development mode (Hot reload + debug)",
+        "type": "shell",
+        "command": "./gradlew bootRun",
+        "group": {
+          "kind": "run",
+          "isDefault": true
+        },
+        "problemMatcher": [],
+        "detail": "Generated from devfile command 'startdev'",
+        "options": {
+          "env": {
+            "COMPONENT": "tools"
+          }
+        }
+      },
+      {
+        "label": "Deploy Postgres",
+        "type": "shell",
+        "command": "oc new-app -e POSTGRESQL_USER=user -e POSTGRESQL_PASSWORD=password -e POSTGRESQL_DATABASE=food_db postgresql:10-el7 -n markmitchell451-dev",
+        "group": {
+          "kind": "test",
+          "isDefault": false
+        },
+        "problemMatcher": [],
+        "detail": "Generated from devfile command 'deploypostgres'",
+        "options": {
+          "env": {
+            "COMPONENT": "tools"
+          }
+        }
+      }
+    ]
+  }
+  
