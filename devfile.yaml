@@ -6,9 +6,8 @@ attributes:
 components:
   - name: devenv
     container:
-      #image: 'camelcasemm/che-devenv-image:3.0.0'
-      image: 'quay.io/devfile/universal-developer-image:ubi8-latest'
-      #image: 'quay.io/devfile/universal-developer-image:ubi9-latest'
+      image: 'camelcasemm/che-devenv-image:2.0.0'
+      #image: 'quay.io/devfile/universal-developer-image:ubi8-latest'
       endpoints:
         - exposure: none
           name: debug
