@@ -30,7 +30,7 @@ replay_pid*
 
 
 # VS Code files
-.vscode/
+.vscode/*
 
 # But include tasks.json
 !.vscode/tasks.json
