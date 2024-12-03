@@ -2,10 +2,6 @@
 
 [![Contribute](https://www.eclipse.org/che/contribute.svg)](https://workspaces.openshift.com#https://github.com/mm-camelcase/user-service/tree/che)
 
-<a href="https://workspaces.openshift.com#https://github.com/mm-camelcase/user-service/tree/che" target="_blank">
-  <img src="https://www.eclipse.org/che/contribute.svg" alt="Contribute">
-</a>
-
 This project is a simple Spring Boot application that can be used for testing CICD pipelines & deployments. Click the "Developer Workspace" icon above to spin up a development environment. See **link** for more details.
 
 ## Requirements
