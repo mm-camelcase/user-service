@@ -2,7 +2,7 @@
 
 [![Contribute](https://www.eclipse.org/che/contribute.svg)](https://workspaces.openshift.com#https://github.com/mm-camelcase/user-service/tree/che)
 
-This project is a simple Spring Boot application that can be used for testing CICD pipelines & deployments. Click the "Developer Workspace" icon above to spin up a development environment. See **link** for more details.
+This project is a simple Spring Boot application that can be used for testing CICD pipelines & deployments. Click the **Developer Workspace** icon above to spin up a development environment. See ![k8s-remote-devenv](https://github.com/mm-camelcase/k8s-remote-devenv) for more details.
 
 ## Requirements
 
