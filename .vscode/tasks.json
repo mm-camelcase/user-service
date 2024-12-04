@@ -52,7 +52,7 @@
       {
         "label": "Debug",
         "type": "shell",
-        "command": "./gradlew bootRun",
+        "command": "./gradlew bootRun --debug-jvm",
         "group": {
           "kind": "none",
           "isDefault": true
