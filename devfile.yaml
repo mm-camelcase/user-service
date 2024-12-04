@@ -60,7 +60,6 @@ commands:
       label: "Run Tests"
       component: tools
       commandLine: "./gradlew test"
-      workingDir: ${PROJECTS_ROOT}/user-service
       group:
         kind: test
   - id: startdev

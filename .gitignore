@@ -32,8 +32,9 @@ replay_pid*
 # VS Code files
 .vscode/*
 
-# But include tasks.json
+# But include these
 !.vscode/tasks.json
+!.vscode/launch.json
 
 # IDE-specific working directories
 bin/
