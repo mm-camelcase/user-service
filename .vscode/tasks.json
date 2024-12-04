@@ -10,7 +10,7 @@
           "isDefault": true
         },
         "problemMatcher": [],
-        "detail": "Generated from devfile command 'package'",
+        "detail": "configured in tasks.json",
         "options": {
           "env": {
             "COMPONENT": "tools"
@@ -26,24 +26,23 @@
           "isDefault": false
         },
         "problemMatcher": [],
-        "detail": "Generated from devfile command 'runtests'",
+        "detail": "configured in tasks.json",
         "options": {
-          "cwd": "${workspaceFolder}/user-service",
           "env": {
             "COMPONENT": "tools"
           }
         }
       },
       {
-        "label": "Start Development mode (Hot reload + debug)",
+        "label": "Run",
         "type": "shell",
         "command": "./gradlew bootRun",
         "group": {
-          "kind": "run",
+          "kind": "none",
           "isDefault": true
         },
         "problemMatcher": [],
-        "detail": "Generated from devfile command 'startdev'",
+        "detail": "configured in tasks.json",
         "options": {
           "env": {
             "COMPONENT": "tools"
@@ -51,15 +50,15 @@
         }
       },
       {
-        "label": "Deploy Postgres",
+        "label": "Debug",
         "type": "shell",
-        "command": "oc new-app -e POSTGRESQL_USER=user -e POSTGRESQL_PASSWORD=password -e POSTGRESQL_DATABASE=food_db postgresql:10-el7 -n markmitchell451-dev",
+        "command": "./gradlew bootRun",
         "group": {
-          "kind": "test",
-          "isDefault": false
+          "kind": "none",
+          "isDefault": true
         },
         "problemMatcher": [],
-        "detail": "Generated from devfile command 'deploypostgres'",
+        "detail": "configured in tasks.json",
         "options": {
           "env": {
             "COMPONENT": "tools"
