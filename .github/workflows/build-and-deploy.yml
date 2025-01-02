@@ -1,4 +1,4 @@
-name: Build, Dockerize, and Deploy Helm Chart
+name: "Build (Optomised v1: Multi-Stage Build)"
 
 on:
   push:
