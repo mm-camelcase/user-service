@@ -28,6 +28,7 @@ jobs:
 
       # Pre-fetch Gradle dependencies on the runner
       - name: Pre-fetch Gradle dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: ./gradlew dependencies --no-daemon
 
 
