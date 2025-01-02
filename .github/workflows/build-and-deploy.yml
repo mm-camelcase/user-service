@@ -6,7 +6,7 @@ on:
       - optomised-v1
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
