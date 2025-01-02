@@ -26,6 +26,9 @@ jobs:
         with:
           install: true
 
+      - name: Debug Gradle cache
+        run: ls -al ~/.gradle/caches || echo "Gradle cache directory does not exist"
+
       # Pre-fetch Gradle dependencies on the runner
       - name: Pre-fetch Gradle dependencies
         if: steps.cache.outputs.cache-hit != 'true'
