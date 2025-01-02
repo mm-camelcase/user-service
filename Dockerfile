@@ -1,14 +1,31 @@
-# Use Zulu OpenJDK 17 as the base image
-FROM azul/zulu-openjdk:17-latest
-
-# Set the working directory inside the container
+# Stage 1: Build
+FROM gradle:8.3-jdk17 AS builder
 WORKDIR /app
 
-# Copy the JAR file built by GitHub Actions into the Docker image
-COPY build/libs/user-*-SNAPSHOT.jar /app/user.jar
+# Copy Gradle files for dependency caching
+COPY gradle /app/gradle
+COPY gradlew /app/gradlew
+COPY build.gradle /app/build.gradle
+COPY settings.gradle /app/settings.gradle
 
-# Expose the port that the application will run on
+# Pre-fetch dependencies
+RUN ./gradlew dependencies --no-daemon
+
+# Copy the rest of the source code
+COPY src /app/src
+
+# Build the application
+RUN ./gradlew build --no-daemon
+
+# Stage 2: Runtime
+FROM azul/zulu-openjdk:17-latest
+WORKDIR /app
+
+# Copy the JAR from the build stage
+COPY --from=builder /app/build/libs/user-*-SNAPSHOT.jar /app/user.jar
+
+# Expose the port
 EXPOSE 8080
 
-# Run the main jar file (avoiding the plain jar)
+# Set the command to run the application
 CMD ["sh", "-c", "java -jar /app/user.jar"]
