@@ -5,7 +5,7 @@ on:
     branches:
       - optomised-v3
 
-      
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -19,6 +19,10 @@ jobs:
         uses: docker/setup-buildx-action@v3
         with:
           install: true
+
+      # Pre-fetch Gradle dependencies on the runner
+      - name: Pre-fetch Gradle dependencies
+        run: ./gradlew dependencies --no-daemon
 
 
       # Cache Gradle dependencies
