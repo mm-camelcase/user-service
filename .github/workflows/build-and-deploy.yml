@@ -13,6 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Enable BuildKit
+      - name: Enable BuildKit
+        run: echo '{"experimental":true}' | sudo tee /etc/docker/daemon.json && sudo systemctl restart docker
+
+
       # Cache Gradle dependencies
       - name: Cache Gradle
         uses: actions/cache@v4
