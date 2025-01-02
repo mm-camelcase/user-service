@@ -3,7 +3,7 @@ name: "Build (Optomised v1: Multi-Stage Build)"
 on:
   push:
     branches:
-      - optomised-v1
+      - optomised-v2
 
 jobs:
   build-and-push:
