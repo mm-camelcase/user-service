@@ -18,7 +18,7 @@ COPY src /app/src
 RUN ./gradlew build --no-daemon
 
 # Stage 2: Runtime
-FROM azul/zulu-openjdk:17-latest
+FROM gcr.io/distroless/java17
 WORKDIR /app
 
 # Copy the JAR from the build stage
@@ -28,4 +28,4 @@ COPY --from=builder /app/build/libs/user-*-SNAPSHOT.jar /app/user.jar
 EXPOSE 8080
 
 # Set the command to run the application
-CMD ["sh", "-c", "java -jar /app/user.jar"]
+CMD ["user.jar"]
