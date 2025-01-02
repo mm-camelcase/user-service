@@ -3,7 +3,7 @@ name: "Build (Optimised v3: Enhanced Caching)"
 on:
   push:
     branches:
-      - optomised-v2
+      - optomised-v3
 
 jobs:
   build-and-push:
