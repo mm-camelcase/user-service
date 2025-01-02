@@ -1,4 +1,4 @@
-name: "Build (Optomised v1: Multi-Stage Build)"
+name: Build
 
 on:
   push:
