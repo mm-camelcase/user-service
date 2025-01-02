@@ -1,4 +1,4 @@
-name: Build
+name: "Build (Optomised v1: Multi-Stage Build)"
 
 on:
   push:
@@ -27,4 +27,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/user-service:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/user-service:optomised-v1
