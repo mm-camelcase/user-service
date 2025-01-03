@@ -22,6 +22,7 @@ public class UserController {
 
     @GetMapping
     public List<User> getAllUsers() {
+        logger.info("getAllUsers");
         return userRepository.findAll();
     }
 
