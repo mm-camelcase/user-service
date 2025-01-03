@@ -28,7 +28,8 @@ RUN chmod +x ./gradlew
 RUN ./gradlew nativeCompile --no-daemon
 
 # Stage 3: Minimal runtime image
-FROM gcr.io/distroless/base
+#FROM gcr.io/distroless/base
+FROM alpine:latest
 WORKDIR /app
 
 # Copy the native executable from the builder stage
