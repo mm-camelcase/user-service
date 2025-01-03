@@ -30,11 +30,13 @@ RUN ./gradlew nativeCompile --no-daemon
 # Stage 3: Minimal runtime image
 #FROM gcr.io/distroless/base
 #FROM alpine:latest
-FROM frolvlad/alpine-glibc:latest
+#FROM frolvlad/alpine-glibc:latest
+FROM ubuntu:22.04
 WORKDIR /app
 
 # Install required libraries
-RUN apk add --no-cache libstdc++ zlib
+#RUN apk add --no-cache libstdc++ zlib
+RUN apt-get update && apt-get install -y libstdc++6 zlib1g
 
 # Copy the native executable from the builder stage
 COPY --from=builder /app/build/native/nativeCompile/user /app/user
