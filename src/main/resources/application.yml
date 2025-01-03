@@ -8,6 +8,17 @@ spring:
   jpa:
     defer-datasource-initialization: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+      base-path: /actuator
+  endpoint:
+    prometheus:
+      enabled: true
+      # cache:
+      #   time-to-live: 60s
 ---
 spring:
   config:
