@@ -12,7 +12,7 @@ COPY settings.gradle /app/settings.gradle
 RUN ./gradlew dependencies --no-daemon
 
 # Stage 2: Build native image using GraalVM
-FROM ghcr.io/graalvm/native-image:ol8-22.3.2 AS builder
+FROM ghcr.io/graalvm/graalvm-ce:ol8-java17 AS builder
 WORKDIR /app
 
 # Copy pre-fetched dependencies from the base stage
