@@ -33,6 +33,9 @@ RUN ./gradlew nativeCompile --no-daemon
 FROM frolvlad/alpine-glibc:latest
 WORKDIR /app
 
+# Install required libraries
+RUN apk add --no-cache libstdc++ zlib
+
 # Copy the native executable from the builder stage
 COPY --from=builder /app/build/native/nativeCompile/user /app/user
 
