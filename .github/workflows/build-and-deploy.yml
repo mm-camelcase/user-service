@@ -1,10 +1,10 @@
-name: "Build (Optimised v3: Enhanced Caching)"
+name: "Build (Optimised v4: GraalVM Native Images)"
 
 
 on:
   push:
     branches:
-      - optomised-v3
+      - optomised-v4
 
 jobs:
   build-and-push:
