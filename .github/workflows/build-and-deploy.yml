@@ -51,8 +51,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
-          key: docker-cache-${{ github.sha }}
+          key: docker-cache-${{ github.ref_name }}-${{ hashFiles('Dockerfile') }}
           restore-keys: |
+            docker-cache-${{ github.ref_name }}-
             docker-cache-
 
       # Log in to Docker Hub
