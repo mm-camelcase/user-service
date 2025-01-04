@@ -1,5 +1,5 @@
-# Use Zulu OpenJDK 17 as the base image
-FROM azul/zulu-openjdk:17-latest
+# Use minimal OpenJDK 17 as the base image
+FROM openjdk:17-jdk-slim
 
 # Set the working directory inside the container
 WORKDIR /app
