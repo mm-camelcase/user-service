@@ -1,5 +1,5 @@
-# Use minimal OpenJDK 17 as the base image
-FROM openjdk:17-jdk-slim
+# Use minimal JDK 17 as the base image
+FROM amazoncorretto:17-alpine
 
 # Set the working directory inside the container
 WORKDIR /app
