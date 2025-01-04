@@ -1,5 +1,8 @@
-# Use minimal JDK 17 as the base image
-FROM amazoncorretto:17-alpine
+# Use minimal OpenJDK 17 as the base image
+# FROM openjdk:17-jdk-slim      # 260 MB
+# 192 MB
+#FROM amazoncorretto:17-alpine   
+FROM eclipse-temurin:17-jdk
 
 # Set the working directory inside the container
 WORKDIR /app
