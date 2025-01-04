@@ -2,7 +2,8 @@
 # FROM openjdk:17-jdk-slim      # 260 MB
 # 192 MB
 #FROM amazoncorretto:17-alpine   
-FROM eclipse-temurin:17-jdk
+#FROM eclipse-temurin:17-jdk     # 237 MB
+FROM openjdk:17-jdk
 
 # Set the working directory inside the container
 WORKDIR /app
