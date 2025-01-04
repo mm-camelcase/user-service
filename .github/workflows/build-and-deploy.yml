@@ -73,7 +73,7 @@ jobs:
       # Tag Docker image for Docker Hub
       - name: Tag Docker image for Docker Hub
         run: |
-          docker tag ghcr.io/${{ github.repository }}:latest ${{ secrets.DOCKER_USERNAME }}/user-service:${{ github.ref_name }}
+          docker tag ghcr.io/${{ github.repository }}:${{ github.ref_name }} ${{ secrets.DOCKER_USERNAME }}/user-service:${{ github.ref_name }}
 
       # Push the Docker image to Docker Hub
       - name: Push Docker image to Docker Hub
