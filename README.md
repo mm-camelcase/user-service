@@ -1,6 +1,6 @@
 # Demo App
 
-This project is a simple Spring Boot application that can be used for testing CICD pipelines & deployments.   
+This project is a simple Spring Boot application that can be used for testing CICD pipelines & deployments.      
 
 ## Requirements
 
