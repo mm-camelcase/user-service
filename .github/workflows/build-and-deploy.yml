@@ -3,7 +3,7 @@ name: Minimise the Base Image Size
 on:
   push:
     branches:
-      - optomised-v4
+      - optomised-v0.5
 
 jobs:
   build:
