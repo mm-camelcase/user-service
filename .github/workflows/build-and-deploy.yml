@@ -8,6 +8,11 @@ on:
     branches:
       - main
 
+env:
+  aws_role: 'arn:aws:iam::966412459053:role/CCAwsInfraDemoGithubAction'
+  aws_region: 'eu-west-1'
+  aws_account_id: '966412459053'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -95,6 +100,28 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/user-service:latest
+
+      # 🔥 NEW: Configure AWS credentials for ECR authentication
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.aws_role }}
+          aws-region: ${{ env.aws_region }}
+
+      # 🔥 NEW: Log in to AWS ECR
+      - name: Log in to Amazon ECR
+        run: aws ecr get-login-password --region ${{ env.aws_region }} | docker login --username AWS --password-stdin ${{ env.aws_account_id }}.dkr.ecr.${{ env.aws_region }}.amazonaws.com
+
+      # 🔥 NEW: Tag Docker image for ECR
+      - name: Tag Docker image for AWS ECR
+        run: |
+          docker tag ghcr.io/${{ github.repository }}:latest ${{ env.aws_account_id }}.dkr.ecr.${{ secrets.aws_region }}.amazonaws.com/user-service:latest
+
+      # 🔥 NEW: Push Docker image to AWS ECR
+      - name: Push Docker image to AWS ECR
+        run: |
+          docker push ${{ env.aws_account_id }}.dkr.ecr.${{ env.aws_region }}.amazonaws.com/user-service:latest
+
 
       # Add annotation for Docker image version
       - name: Annotate Docker image version
