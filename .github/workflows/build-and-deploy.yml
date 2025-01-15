@@ -51,10 +51,12 @@ jobs:
           name: user-jar
           path: build/libs/user-*.jar
 
-  docker:
+  push:
     runs-on: ubuntu-latest
     needs: build  # Ensures this job runs after 'build' completes
-
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
@@ -130,7 +132,7 @@ jobs:
 
   helm:
     runs-on: ubuntu-latest
-    needs: docker  # Ensures this job runs after 'docker' completes
+    needs: push  # Ensures this job runs after 'docker' completes
 
     steps:
       - name: Checkout source code
