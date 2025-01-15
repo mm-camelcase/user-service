@@ -117,7 +117,7 @@ jobs:
       # 🔥 NEW: Tag Docker image for ECR
       - name: Tag Docker image for AWS ECR
         run: |
-          docker tag ghcr.io/${{ github.repository }}:latest ${{ env.aws_account_id }}.dkr.ecr.${{ secrets.aws_region }}.amazonaws.com/user-service:latest
+          docker tag ghcr.io/${{ github.repository }}:latest ${{ env.aws_account_id }}.dkr.ecr.${{ env.aws_region }}.amazonaws.com/user-service:latest
 
       # 🔥 NEW: Push Docker image to AWS ECR
       - name: Push Docker image to AWS ECR
