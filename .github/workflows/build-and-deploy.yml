@@ -12,7 +12,6 @@ env:
   aws_role: 'arn:aws:iam::966412459053:role/CCAwsInfraDemoGithubAction'
   aws_region: 'eu-west-1'
   aws_account_id: '966412459053'
-
   
 jobs:
   build:
