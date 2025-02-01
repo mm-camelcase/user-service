@@ -50,7 +50,7 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedOrigins("https://app.camelcase.club") // Demo origin
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*")
+                        .allowedHeaders("Authorization", "Content-Type", "*") // Allowed headers
                         .allowCredentials(true);
             }
         };
