@@ -41,18 +41,18 @@ public class CorsConfig {
     }
 
     // Demo profile (https://app.camelcase.club)
-    @Bean
-    @Profile("demo")
-    public WebMvcConfigurer demoCorsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("https://app.camelcase.club") // Demo origin
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("Authorization", "Content-Type", "*") // Allowed headers
-                        .allowCredentials(true);
-            }
-        };
-    }
+    // @Bean
+    // @Profile("demo")
+    // public WebMvcConfigurer demoCorsConfigurer() {
+    //     return new WebMvcConfigurer() {
+    //         @Override
+    //         public void addCorsMappings(CorsRegistry registry) {
+    //             registry.addMapping("/**")
+    //                     .allowedOrigins("https://app.camelcase.club") // Demo origin
+    //                     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+    //                     .allowedHeaders("Authorization", "Content-Type", "*") // Allowed headers
+    //                     .allowCredentials(true);
+    //         }
+    //     };
+    // }
 }
