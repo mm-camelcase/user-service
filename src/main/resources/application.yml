@@ -39,3 +39,21 @@ spring:
         jwt:
           issuer-uri: https://auth.camelcase.club/realms/demo-realm
           jwk-set-uri: https://auth.camelcase.club/realms/demo-realm/protocol/openid-connect/certs
+  datasource:
+    url: jdbc:postgresql://${RDS_HOSTNAME}:5432/${RDS_DB_NAME}
+    driver-class-name: org.postgresql.Driver
+    username: ${RDS_USERNAME}
+    password: ${RDS_PASSWORD}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 30000
+      connection-timeout: 30000
+      max-lifetime: 1800000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
