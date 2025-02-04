@@ -40,10 +40,10 @@ spring:
           issuer-uri: https://auth.camelcase.club/realms/demo-realm
           jwk-set-uri: https://auth.camelcase.club/realms/demo-realm/protocol/openid-connect/certs
   datasource:
-    url: jdbc:postgresql://${RDS_HOSTNAME}:5432/${RDS_DB_NAME}
+    url: jdbc:postgresql://${RDS_HOSTNAME}:5432/${RDS_USER_DB_NAME}
     driver-class-name: org.postgresql.Driver
-    username: ${RDS_USERNAME}
-    password: ${RDS_PASSWORD}
+    username: ${RDS_USER_DB_NAME}
+    password: ${RDS_USER_DB_USERNAME}
     hikari:
       maximum-pool-size: 10
       minimum-idle: 2
