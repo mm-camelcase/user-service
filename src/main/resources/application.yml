@@ -42,8 +42,8 @@ spring:
   datasource:
     url: jdbc:postgresql://${RDS_HOSTNAME}:5432/${RDS_USER_DB_NAME}
     driver-class-name: org.postgresql.Driver
-    username: ${RDS_USER_DB_NAME}
-    password: ${RDS_USER_DB_USERNAME}
+    username: ${RDS_USER_DB_USERNAME}
+    password: ${RDS_USER_DB_PASSWORD}
     hikari:
       maximum-pool-size: 10
       minimum-idle: 2
