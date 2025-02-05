@@ -29,6 +29,9 @@ spring:
 
 ---
 
+auth:
+  domain: auth.camelcase.club
+
 spring:
   config:
     activate:
@@ -37,8 +40,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://auth.camelcase.club/realms/demo-realm
-          jwk-set-uri: https://auth.camelcase.club/realms/demo-realm/protocol/openid-connect/certs
+          issuer-uri: https://${auth.domain}/realms/demo-realm
+          jwk-set-uri: https://${auth.domain}/realms/demo-realm/protocol/openid-connect/certs
   datasource:
     url: jdbc:postgresql://${RDS_HOSTNAME}:5432/${RDS_USER_DB_NAME}
     driver-class-name: org.postgresql.Driver

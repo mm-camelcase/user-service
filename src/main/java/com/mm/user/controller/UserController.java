@@ -22,13 +22,11 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping
-    //@PreAuthorize("hasRole('api-viewer')")
     @PreAuthorize("hasAnyRole('api-viewer', 'api-editor')")
-    //"hasAnyRole('ADMIN','DB-ADMIN')"
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-    
+
     @PostMapping
     @PreAuthorize("hasRole('api-editor')")
     public User createUser(@RequestBody User user) {
@@ -62,6 +60,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('api-editor')")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
